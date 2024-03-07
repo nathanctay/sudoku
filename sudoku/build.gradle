@@ -1,0 +1,40 @@
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+repositories {
+    mavenCentral()
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+javafx {
+    version = "21"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+//version = '1.2.1'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+run {   /* Run with: gradle run -PrunArgs="arg1 arg2 arg3" */
+    if (project.hasProperty('runArgs')) {
+        args project.getProperty('runArgs').split()
+    }
+}
+
+mainClassName = 'Main'
